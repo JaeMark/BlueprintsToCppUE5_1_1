@@ -2,6 +2,7 @@
 
 
 #include "Grabber.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -24,7 +25,6 @@ void UGrabber::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("Grabber BeginPlay"));
 }
 
-
 // Called every frame
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -34,3 +34,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	UE_LOG(LogTemp, Warning, TEXT("Grabber Tick Component"));
 }
 
+FVector UGrabber::GetMaxGrabLocation() const
+{
+	return GetComponentLocation() + UKismetMathLibrary::GetForwardVector(GetComponentRotation()) * MaxGrabDistance;
+}
