@@ -48,3 +48,6 @@ UPhysicsHandleComponent* UGrabber::GetPhysicsComponent() const
 {
 	return GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 }
+
+void UGrabber::NotifyQuestActor(AActor* Actor) {
+}
