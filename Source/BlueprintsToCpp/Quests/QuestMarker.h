@@ -19,7 +19,7 @@ public:
 
 protected:
 	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
-		AQuestManager* GetQuestManager() const;
+		AQuestManager* GetQuestManager();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		USceneComponent* Root;
