@@ -17,6 +17,9 @@ public:
 	// Sets default values for this actor's properties
 	AQuestMarker();
 
+	UFUNCTION(BlueprintCallable)
+		void RefreshVisibility();
+
 protected:
 	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
 		AQuestManager* GetQuestManager();
