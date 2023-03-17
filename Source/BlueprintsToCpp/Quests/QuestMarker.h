@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "QuestManager.h"
 #include "QuestMarker.generated.h"
 
 class UNiagaraComponent; // Forward declaration. Ask Kyle about this.
@@ -17,9 +18,18 @@ public:
 	AQuestMarker();
 
 protected:
+	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
+		AQuestManager* GetQuestManager() const;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		USceneComponent* Root;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UNiagaraComponent* NiagaraSystem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		FName QuestName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		int32 ShowAtProgress = 0;
 };
