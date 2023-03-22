@@ -21,6 +21,14 @@ public:
 		void RefreshVisibility();
 
 protected:
+	virtual void BeginPlay() override;
+
+private:
+	UFUNCTION()
+	void QuestUpdate(int32 index);
+
+
+protected:
 	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
 		AQuestManager* GetQuestManager();
 

@@ -16,8 +16,17 @@ AQuestMarker::AQuestMarker() {
 	NiagaraSystem->SetVariableVec3(TEXT("Vector (RGB)_Color"), FVector3d{ 1.0, 0.0, 0.090841 });
 }
 
+void AQuestMarker::BeginPlay() {
+	GetQuestManager()->CompletedQuest.AddDynamic(this, &AQuestMarker::QuestUpdate);
+	RefreshVisibility();
+}
+
 void AQuestMarker::RefreshVisibility() {
 	const FQuestInfo Quest = GetQuestManager()->GetQuest(QuestName);
 	const bool Visibility = GetQuestManager()->IsActiveQuest(QuestName) && Quest.Progress == ShowAtProgress;
 	NiagaraSystem->SetVisibility(Visibility);
+}
+
+void AQuestMarker::QuestUpdate(int32 index) {
+	RefreshVisibility();
 }
