@@ -36,6 +36,8 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Grab"), IE_Pressed, this, &AFirstPersonCharacter::Grab);
+	PlayerInputComponent->BindAction(TEXT("Grab"), IE_Released, this, &AFirstPersonCharacter::Released);
 
 }
 
@@ -48,5 +50,18 @@ void AFirstPersonCharacter::Right(float AxisValue)
 {
 	GetCharacterMovement()->AddInputVector(GetActorRightVector() * AxisValue);
 }
+
+void AFirstPersonCharacter::Grab()
+{
+	GetGrabber()->Grab();
+}
+
+void AFirstPersonCharacter::Released()
+{
+	GetGrabber()->Release();
+}
+
+
+
 
 

@@ -33,4 +33,6 @@ public:
 private:
 	void Forward(float AxisValue);
 	void Right(float AxisValue);
+	void Grab();
+	void Released();
 };
