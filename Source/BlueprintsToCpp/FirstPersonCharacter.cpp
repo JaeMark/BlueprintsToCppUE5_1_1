@@ -2,8 +2,8 @@
 
 
 #include "FirstPersonCharacter.h"
-
 #include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AFirstPersonCharacter::AFirstPersonCharacter()
@@ -32,12 +32,19 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("Forward"), this, &AFirstPersonCharacter::Forward);
+	PlayerInputComponent->BindAxis(TEXT("Right"), this, &AFirstPersonCharacter::Right);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ACharacter::Jump);
 
 }
 
-void AFirstPersonCharacter::Forward(float AxisValue) {
-	UE_LOG(LogTemp, Warning, TEXT("Forward %f"), AxisValue);
+void AFirstPersonCharacter::Forward(float AxisValue)
+{
+	GetCharacterMovement()->AddInputVector(GetActorForwardVector() * AxisValue);
+}
+
+void AFirstPersonCharacter::Right(float AxisValue)
+{
+	GetCharacterMovement()->AddInputVector(GetActorRightVector() * AxisValue);
 }
 
 
